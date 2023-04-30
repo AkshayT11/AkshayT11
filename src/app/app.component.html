@@ -1,0 +1,170 @@
+<div class="header">
+  <h1>Course Registration</h1>
+</div>
+
+<div class="container mt-5 mb-4">
+   <form [formGroup]="CrudForm " (ngSubmit)="submitForm()"  >
+    <div class="row">
+      <div class="form-group col-md-5">
+        <label for="firstname">First Name:</label>
+        <input type="text" name="firstname" [class.is-invalid]="f['firstName'].invalid && f['firstName'].touched" class="form-control" formControlName="firstName">
+
+          <!-- for error message display  -->
+        <div class="alert alert-danger" *ngIf="f['firstName'].invalid && f['firstName'].touched">
+          <small *ngIf="f['firstName'].errors && f['firstName'].errors['required']">
+            Name is Required
+          </small>
+          <small *ngIf="f['firstName'].errors && f['firstName'].errors['minlength']">
+            3 Min Character Required
+          </small>
+          <small *ngIf="f['firstName'].errors && f['firstName'].errors['maxlength']">
+            You Exceeded the Limit
+          </small>
+        </div>
+      </div>
+
+     <div class="form-group col-md-4">
+        <label for="lastname">Last Name:</label>
+        <input type="text" name="lastname" [class.is-invalid]="f['lastName'].invalid && f['lastName'].touched"  class="form-control" formControlName="lastName">
+
+          <!-- for error message display  -->
+          <div class="alert alert-danger" *ngIf="f['lastName'].invalid && f['lastName'].touched">
+            <small *ngIf="f['lastName'].errors && f['lastName'].errors['required']">
+              Last Name is Required
+            </small>
+            <small *ngIf="f['lastName'].errors && f['lastName'].errors['minlength']">
+              3 Min Character Required
+            </small>
+            <small *ngIf="f['lastName'].errors && f['lastName'].errors['maxlength']">
+              You Exceeded the Limit
+            </small>
+          </div>
+
+         </div>
+      <div class="form-group col-md-3">
+        <label for="age">Age:</label>
+        <input type="number" name="age"  [class.is-invalid]="f['age'].invalid && f['age'].touched"  class="form-control" formControlName="age">
+
+          <!-- for error message display  -->
+          <div class="alert alert-danger" *ngIf="f['age'].invalid && f['age'].touched">
+            <small *ngIf="f['age'].errors && f['age'].errors['required']">
+              Age is Required
+            </small>
+            <small *ngIf="f['age'].errors && f['age'].errors['min']">
+              Age must be 16 Years Old
+            </small>
+            <small *ngIf="f['age'].errors && f['age'].errors['max']">
+              Age should not Greater than 60
+            </small>
+          </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="form-group col-md-6">
+        <label for="email">Email:</label>
+        <input type="text" name="email"  [class.is-invalid]="f['email'].invalid && f['email'].touched"  class="form-control" formControlName="email">
+
+         <!-- for error message display  -->
+         <div class="alert alert-danger" *ngIf="f['email'].invalid && f['email'].touched">
+          <small *ngIf="f['email'].errors && f['email'].errors['required']">
+            Email is Required
+          </small>
+          <small *ngIf="f['email'].errors && f['email'].errors['email']">
+            Email is not Valid
+          </small>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="course">Course Name:</label>
+        <input type="text" name="course"  [class.is-invalid]="f['courseName'].invalid && f['courseName'].touched"  class="form-control" formControlName="courseName">
+
+         <!-- for error message display  -->
+         <div class="alert alert-danger" *ngIf="f['courseName'].invalid && f['courseName'].touched">
+          <small *ngIf="f['courseName'].errors && f['courseName'].errors['required']">
+            Course Name is Required
+          </small>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="form-group col-md-6">
+        <label for="pass">Password:</label>
+        <input type="text" name="password" [class.is-invalid]="f['password'].invalid && f['password'].touched" formControlName="password" class="form-control">
+
+         <!-- for error message display  -->
+         <div class="alert alert-danger" *ngIf="f['password'].invalid && f['password'].touched">
+          <small *ngIf="f['password'].errors && f['password'].errors['required']">
+            Password  is Required
+          </small>
+          <small *ngIf="f['password'].errors && f['password'].errors['minlength']">
+            Password  must have Min 5 Character
+          </small>
+          <small *ngIf="f['password'].errors && f['password'].errors['maxlength']">
+            Password should not exceed Limit of 15 Character
+          </small>
+        </div>
+      </div>
+      <div class="form-group col-md-5">
+        <label for="confmpass">Confirm Password:</label>
+        <input type="text" name="confirmpass" [class.is-invalid]="f['confPassword'].invalid && f['confPassword'].touched" formControlName="confPassword" class="form-control">
+
+         <!-- for error message display  -->
+         <div class="alert alert-danger" *ngIf="f['confPassword'].invalid && f['confPassword'].touched">
+          <small *ngIf="f['confPassword'].errors && f['confPassword'].errors['required']">
+            Password  is Required
+          </small>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="form-group text-center ">
+        <button type="submit" class="btn btn-success mx-3" >Save</button>
+        <button type="button" class="btn btn-danger" (click)="Oncancel()">Cancel</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<!-- result of userdata  -->
+
+<div class="header">
+  <h1 class="ml-3">User Data </h1>
+</div>
+
+<table class="table table-striped  ">
+  <thead>
+    <tr>
+      <th scope="col">ID No</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Email</th>
+      <th scope="col">Course Name</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr *ngFor="let reg of regcourse">  
+
+       <td> {{reg.id}}</td>
+      <td> {{reg.firstName}}</td>
+      <td> {{reg.lastName}}</td>
+      <td> {{reg.age}}</td>
+      <td> {{reg.email}}</td>
+      <td> {{reg.courseName}}</td>
+      <td>
+        <button class="btn btn-warning" (click)="edit(reg.id)">Edit</button>
+        <button class="btn btn-danger mx-2" (click)="delete(reg.id)">Delete</button> 
+      </td>
+
+    
+    </tr>
+
+   
+ 
+  </tbody>
+</table>
