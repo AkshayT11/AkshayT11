@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @Akshay Telawade 
-- 👀 I’m interested in Web Development specially front end , with Angular 
-- 🌱 I’m currently learning Angular 15
+- 👀 I’m interested in Web Development specially front end , with React js 
+- 🌱 I’m currently learning React js , Javascript , Tailwind Css
 - 💞️ I’m looking to collaborate on ...
 - 📫 you can contact me on my email id - akshaytelawade28@gmail.com
 
